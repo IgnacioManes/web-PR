@@ -4,3 +4,4 @@ dist
 .env
 studio/dist
 *.log
+*.pnpm-store
