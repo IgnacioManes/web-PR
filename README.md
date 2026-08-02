@@ -29,4 +29,14 @@ Si el servidor de desarrollo no puede iniciarse dentro del entorno de Codex, us�
 
 Después abrí `http://127.0.0.1:4321/`. Esta opción recompila el sitio antes de mostrarlo.
 
+## Cloudflare Workers
+
+El sitio se publica como assets estáticos; no necesita el adaptador SSR de Astro.
+
+- Build command: `pnpm run build`
+- Deploy command: `npx wrangler@latest deploy`
+- Output directory: `dist`
+
+La configuración está declarada en `wrangler.jsonc` para impedir que Wrangler intente ejecutar `astro add cloudflare` automáticamente.
+
 Sin credenciales de Sanity el sitio utiliza contenido inicial local, por lo que siempre puede compilarse y verse completo.
