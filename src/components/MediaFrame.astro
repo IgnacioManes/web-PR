@@ -1,0 +1,7 @@
+---
+const { image, label = 'Pared Roja', index = 'PR', ratio = 'landscape', href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class:list={['media-frame', `media-${ratio}`, { 'has-image': image }]} href={href} target={href ? '_blank' : undefined} rel={href ? 'noreferrer' : undefined}>
+  {image ? <img src={image} alt={label} loading="lazy" /> : <div class="media-placeholder" aria-label={label}><span>{index}</span><i></i><b>{label}</b></div>}
+</Tag>

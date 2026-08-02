@@ -1,0 +1,17 @@
+{
+  "name": "pared-roja-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev --config sanity.config.ts",
+    "build": "sanity build dist --config sanity.config.ts"
+  },
+  "dependencies": {
+    "@sanity/vision": "^5.31.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sanity": "^6.6.0",
+    "styled-components": "^6.1.19"
+  }
+}

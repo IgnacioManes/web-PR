@@ -1,0 +1,21 @@
+{
+  "name": "pared-roja-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "studio": "pnpm --dir studio dev",
+    "studio:build": "pnpm --dir studio build"
+  },
+  "dependencies": {
+    "@sanity/client": "^7.25.0",
+    "astro": "^7.1.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.2"
+  }
+}

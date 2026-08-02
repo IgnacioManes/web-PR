@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFrame from '../components/MediaFrame.astro';
+import { getContent, getWhatsappUrl } from '../lib/content';
+const content = await getContent();
+---
+<BaseLayout title="El estudio — Pared Roja" description="Conocé la sala, el enfoque de trabajo y el equipamiento de Pared Roja." current="/estudio">
+  <section class="page-hero">
+    <p class="eyebrow">El estudio</p>
+    <h1 class="display">Un espacio<br />para estar<br /><em>en la música.</em></h1>
+    <div class="page-hero-bottom"><span class="eyebrow">Sala 01 · En actividad</span><p>Diseñada para que bandas y artistas puedan concentrarse en tocar, escuchar y tomar decisiones sin que el espacio se interponga.</p></div>
+  </section>
+
+  <section class="section-pad">
+    <div class="feature-grid">
+      <MediaFrame label="Interior del estudio" index="PR / SALA" ratio="portrait" href="https://www.instagram.com/estudioparedroja/" />
+      <div class="feature-copy">
+        <p class="eyebrow">Pared Roja por dentro</p>
+        <h2>Una sala flexible.<br />Un proceso cercano.</h2>
+        <p>Trabajamos cada sesión como un proyecto singular. La disposición, el microfoneo, el monitoreo y el ritmo de trabajo se organizan alrededor de la música y de quienes la están interpretando.</p>
+        <p>Hay lugar para la precisión técnica, pero también para probar, equivocarse y encontrar ese sonido que no estaba planeado.</p>
+        <div class="facts"><div class="fact"><span>Modalidad</span><b>Sesiones con reserva</b></div><div class="fact"><span>Formaciones</span><b>Bandas y solistas</b></div><div class="fact"><span>Presupuesto</span><b>Bajo consulta</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="equipment section-pad">
+    <div class="split-heading"><p class="eyebrow">Herramientas</p><div><h2 class="section-title">Todo lo necesario.<br />Nada entre vos<br />y la <em>toma.</em></h2><p class="section-intro">El inventario definitivo se administra desde Sanity para mantenerlo actualizado sin tocar el sitio.</p></div></div>
+    <div class="equipment-grid">
+      {content.equipment.map((group, i) => <article class="equipment-card"><span>0{i + 1}</span><h3>{group.title}</h3><ul>{group.items.map((item) => <li>{item}</li>)}</ul></article>)}
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="feature-grid">
+      <div class="feature-copy"><p class="eyebrow">Lo que viene</p><h2>Pared Roja<br />sigue creciendo.</h2><p>La arquitectura del sitio ya está preparada para sumar nuevas salas, servicios y posibilidades cuando llegue el momento de la expansión.</p><a class="button button-red" href={getWhatsappUrl()} target="_blank" rel="noreferrer">Consultar una sesión <span>↗</span></a></div>
+      <MediaFrame label="Expansión próximamente" index="NEXT / 02" ratio="landscape" />
+    </div>
+  </section>
+</BaseLayout>

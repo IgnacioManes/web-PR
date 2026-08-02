@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFrame from '../components/MediaFrame.astro';
+import { getContent, getWhatsappUrl } from '../lib/content';
+const content = await getContent();
+const heights = [22,38,62,34,72,46,88,56,31,67,94,52,79,41,63,27,84,49,69,37,90,58,76,44,61,29,82,54,71,35];
+---
+<BaseLayout current="/">
+  <section class="hero">
+    <div class="hero-copy">
+      <div>
+        <p class="eyebrow">Estudio de grabación · Buenos Aires</p>
+        <h1 class="display">Donde la<br /><em>música</em><br />toma forma.</h1>
+      </div>
+      <div class="hero-bottom">
+        <p>Grabación, producción, mezcla y mastering para bandas y artistas que buscan identidad, interpretación y un sonido propio.</p>
+        <a class="button button-light" href={getWhatsappUrl()} target="_blank" rel="noreferrer">Consultar disponibilidad <span>↗</span></a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-rings"><span></span><span></span><span></span></div>
+      <img class="hero-logo" src="/pared-roja-logo.jpg" alt="" width="150" height="150" />
+      <div class="wave">{heights.map((height, i) => <i style={`--h:${height}%;--i:${i}`}></i>)}</div>
+      <span class="hero-side-label">Pared Roja · Señal viva</span>
+    </div>
+  </section>
+
+  <section class="manifesto section-pad">
+    <div class="manifesto-grid">
+      <p class="eyebrow">Nuestro enfoque</p>
+      <p class="manifesto-copy">La técnica importa. Pero el centro siempre es la <em>canción</em>, la banda y ese momento irrepetible en el que todo empieza a sonar.</p>
+    </div>
+  </section>
+
+  <section class="section-pad" style="padding-top:0">
+    <div class="studio-preview">
+      <MediaFrame label="La sala de Pared Roja" index="SALA / 01" ratio="landscape" href="https://www.instagram.com/estudioparedroja/" />
+      <div class="studio-preview-copy">
+        <p class="eyebrow">El espacio</p>
+        <h2 class="section-title">Una sala.<br /><em>Muchas formas</em><br />de habitarla.</h2>
+        <p>Un entorno flexible para grabar bandas, instrumentos y voces con comodidad. El armado se adapta a cada formación y a la intención de cada sesión.</p>
+        <a class="button button-dark" href="/estudio">Conocer el estudio <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section section-pad">
+    <div class="split-heading">
+      <p class="eyebrow">Qué hacemos</p>
+      <div><h2 class="section-title">De la primera toma<br />al <em>master final.</em></h2></div>
+    </div>
+    <div class="services-list">
+      {content.services.map((service) => (
+        <a class="service-row" href={`/servicios#${service.slug}`}>
+          <span>{service.number}</span><h3>{service.title}</h3><p>{service.summary}</p><b>↗</b>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="split-heading">
+      <p class="eyebrow">En sesión</p>
+      <div><h2 class="section-title">Música hecha<br />entre estas <em>paredes.</em></h2><p class="section-intro">Procesos, bandas y canciones que forman parte del archivo vivo del estudio.</p></div>
+    </div>
+    <div class="projects-grid">
+      {content.projects.slice(0, 3).map((project, i) => (
+        <article class="project-card">
+          <MediaFrame image={project.image} label={project.title} index={`PR / 0${i + 1}`} ratio={i === 1 ? 'portrait' : 'landscape'} href={project.href} />
+          <div class="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p></div><p>{project.year}</p></div>
+        </article>
+      ))}
+    </div>
+    <div style="margin-top:4rem"><a class="button button-dark" href="/trabajos">Ver trabajos <span>→</span></a></div>
+  </section>
+
+  <section class="quote-band">
+    <blockquote>“No buscamos que todas las bandas suenen igual. Buscamos que cada una suene más a sí misma.”</blockquote>
+    <p>Pared Roja · Filosofía de trabajo</p>
+  </section>
+</BaseLayout>

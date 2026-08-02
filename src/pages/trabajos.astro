@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MediaFrame from '../components/MediaFrame.astro';
+import { getContent } from '../lib/content';
+const content = await getContent();
+---
+<BaseLayout title="Trabajos — Pared Roja" description="Bandas, sesiones y procesos realizados en Estudio Pared Roja." current="/trabajos">
+  <section class="page-hero">
+    <p class="eyebrow">Archivo vivo</p>
+    <h1 class="display">Canciones,<br />bandas y días<br /><em>de estudio.</em></h1>
+    <div class="page-hero-bottom"><span class="eyebrow">Selección de trabajos</span><p>Una muestra del trabajo que sucede en Pared Roja. Los proyectos se cargan desde Sanity y pueden enlazar a sus lanzamientos oficiales.</p></div>
+  </section>
+  <section class="section-pad">
+    <div class="projects-grid">
+      {content.projects.map((project, i) => (
+        <article class="project-card">
+          <MediaFrame image={project.image} label={project.title} index={`PR / ${String(i + 1).padStart(2, '0')}`} ratio={i % 2 ? 'portrait' : 'landscape'} href={project.href} />
+          <div class="project-meta"><div><h3>{project.title}</h3><p>{project.category}</p></div><p>{project.year}</p></div>
+        </article>
+      ))}
+    </div>
+    <div style="margin-top:5rem;text-align:center"><a class="button button-red" href="https://www.instagram.com/estudioparedroja/" target="_blank" rel="noreferrer">Más sesiones en Instagram <span>↗</span></a></div>
+  </section>
+</BaseLayout>

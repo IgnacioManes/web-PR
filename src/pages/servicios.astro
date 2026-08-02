@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent, getWhatsappUrl } from '../lib/content';
+const content = await getContent();
+---
+<BaseLayout title="Servicios — Pared Roja" description="Grabación, producción, mezcla y mastering para bandas y artistas." current="/servicios">
+  <section class="page-hero">
+    <p class="eyebrow">Servicios</p>
+    <h1 class="display">Cada canción<br />pide un proceso<br /><em>diferente.</em></h1>
+    <div class="page-hero-bottom"><span class="eyebrow">De la idea al lanzamiento</span><p>Podés trabajar una etapa puntual o construir un recorrido completo. Armamos la propuesta según el estado real de tu proyecto.</p></div>
+  </section>
+  <section class="section-pad">
+    {content.services.map((service) => (
+      <article class="service-detail" id={service.slug}>
+        <span class="number">{service.number}</span>
+        <h2>{service.title}</h2>
+        <div><p class="section-intro">{service.summary}</p><p>{service.detail}</p><a class="button button-dark" href={getWhatsappUrl(`Hola, llegué desde la web de Pared Roja. Quisiera consultar por ${service.title.toLowerCase()} para mi proyecto.`)} target="_blank" rel="noreferrer">Consultar por {service.title.toLowerCase()} <span>↗</span></a></div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

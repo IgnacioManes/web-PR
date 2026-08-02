@@ -1,0 +1,19 @@
+---
+import { getWhatsappUrl } from '../lib/content';
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL || 'hola@paredroja.com.ar';
+const location = import.meta.env.PUBLIC_LOCATION || 'Buenos Aires, Argentina';
+---
+<footer class="site-footer">
+  <div class="footer-lead">
+    <p class="eyebrow">Tu próxima sesión</p>
+    <h2>Hagamos sonar<br />esa canción.</h2>
+    <a class="button button-light" href={getWhatsappUrl()} target="_blank" rel="noreferrer">Consultar por WhatsApp <span>↗</span></a>
+  </div>
+  <div class="footer-grid">
+    <div><img class="footer-logo" src="/pared-roja-logo.jpg" alt="Pared Roja" width="112" height="112" /><p>Estudio de grabación<br />para bandas y artistas.</p></div>
+    <div><p class="footer-label">Contacto</p><a href={`mailto:${email}`}>{email}</a><p>{location}</p></div>
+    <div><p class="footer-label">Seguinos</p><a href="https://www.instagram.com/estudioparedroja/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+    <div><p class="footer-label">Navegación</p><a href="/estudio">El estudio</a><a href="/servicios">Servicios</a><a href="/trabajos">Trabajos</a></div>
+  </div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Pared Roja</span><span>Hecho para escuchar fuerte.</span></div>
+</footer>
