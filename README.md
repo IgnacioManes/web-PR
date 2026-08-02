@@ -33,10 +33,11 @@ Después abrí `http://127.0.0.1:4321/`. Esta opción recompila el sitio antes d
 
 El sitio se publica como assets estáticos; no necesita el adaptador SSR de Astro.
 
-- Build command: `pnpm run build`
-- Deploy command: `npx wrangler@latest deploy`
+- Build command: dejar vacío
+- Deploy command: `pnpm run deploy:cloudflare`
+- Preview deploy command (si aparece): `pnpm run deploy:cloudflare:preview`
 - Output directory: `dist`
 
-La configuración está declarada en `wrangler.jsonc` para impedir que Wrangler intente ejecutar `astro add cloudflare` automáticamente.
+Los scripts de despliegue compilan Astro antes de ejecutar Wrangler, por lo que `dist` siempre existe al comenzar la publicación. La configuración está declarada en `wrangler.jsonc` para impedir que Wrangler intente ejecutar `astro add cloudflare` automáticamente.
 
 Sin credenciales de Sanity el sitio utiliza contenido inicial local, por lo que siempre puede compilarse y verse completo.
